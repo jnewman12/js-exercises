@@ -1,0 +1,1 @@
+A series of javascript exercises for personal practice. 
