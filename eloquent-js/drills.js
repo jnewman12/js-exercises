@@ -67,3 +67,78 @@ console.log(removed);
 var arr = [1, 2, 3];
 arr.unshift(0);
 console.log(arr);
+
+
+// Strings
+
+// String.charAt
+// returns specified number from a string
+var anyString = 'some string';
+console.log(anyString.charAt(0));
+
+// String.concat
+// combines text of two or more strings together
+var hello = 'hello';
+var someString = 'again';
+console.log(hello + someString);
+console.log(hello.concat(' james,', ' have a nice day'));
+
+// String.indexOf
+// the indexOf method returns the index within the calling string object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found
+'Blue Whale'.indexOf('Blue');
+'Blue Whale'.indexOf('Blute');
+
+// String.length
+// the length property represents the length of a string
+var s = 'string'
+s.length;
+
+// String.search
+// the search method executes a search for a match between a regular expression and this string object
+var str = 'visit China!';
+str.search('i');
+str.search('China');
+
+// String.slice
+// the slice method extracts a section of a string and returns a new string
+var str1 = 'The morning has come';
+var str2 = str1.slice(4,-3);
+console.log(str2);
+// slice() finds charcters. So in the example above it starts at 4, which is morning, and the - sign removes the value. So -3 would remove 'ome'
+
+// String.split
+// the split method splits a string object into an array of string by seperating the string into substrings
+var strang = 'How are you today?';
+var res = strang.split(" ");
+console.log(strang);
+console.log(res);
+
+// String.sub
+// the sub method creates a <sub> html element that causes a string to be displayed as subscript
+var subText = 'subscript';
+console.log(subText.sub());
+
+// String.substr
+// the substr method returns the characters in a string beginning at the specified location through the specified number of characters, or at the end of the string
+var strangg = 'Hello World!';
+var ress = strangg.substr(1,4);
+console.log(ress);
+// substr starts at the position given (1), and ends at the other value given (4)
+
+// String.toLowerCase
+// returns the calling string value to lowercase
+console.log("ALPHABET".toLowerCase());
+
+//String.toUpperCase
+// returns the calling string value to UpperCase
+console.log("alphabet".toUpperCase());
+
+
+
+
+
+
+// Object.keys
+// returns an array of a given objects own enumerable properties in the same order provided by a for loop
+var array_ray = ['a', 'b', 'c'];
+console.log(Object.keys(array_ray));
