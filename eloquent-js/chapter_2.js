@@ -175,4 +175,58 @@ switch (prompt('What is the weather like?')) {
 - the enviornment is the set of variables that are currently defined (prompt, alert for a fresh window)
 - you can introduce disturbances in the flow by using conditional (if, else, switch) and looping (while, do, for)
 - functions are special values that encapsulate a piece of a program. You invoke them by writing functionName(argument1, argument2). Such a function call is an expression, and may produce a value
+*/
+
+
+// Problems
+
+//1. Looping a triangle
+// for loop version
+for (var line = "#"; line.length < 8; line += "#")
+  console.log(line);
+// while loop version
+var counter = '#';
+while (counter.length < 8) {
+    console.log(counter);
+    counter += '#';
+}
+
+// 2. FizzBuzz
+for (var i = 1; i <= 100; i ++ ) {
+ if (i % 15 == 0)
+        console.log("FizzBuzz");
+    else if (i % 3 == 0)
+        console.log("Fizz");
+    else if (i % 5 == 0)
+        console.log("Buzz");
+    else
+        console.log(i);
+}
+
+// 3. Chess Board
+var holder = 8;
+var board = "";
+var y = 1;
+var x = 1;
+
+while ( y < 1) {
+    while ( x < 1 ) {
+        if ((x + y) % 2 == 0)
+        board += '#';
+        else
+        board += " ";
+    }
+    board += "\n";
+}
+
+console.log(board)
+
+
+
+
+
+
+
+
+
 
