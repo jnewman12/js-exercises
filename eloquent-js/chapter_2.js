@@ -137,11 +137,42 @@ for (var current = 20; ; current++) {
 }  
 console.log(current);
 
+// the for construct in this does not have a part that checks for the end of the loop. 
+// this means the loop will never stop unless the break statement is executed.
 
+// continue is similar to break. When continue is encountered in a loop body, control jumps out of the body, and continues with the loops next iteration. 
 
+// counter = counter + 1
+// should be counter += 1
+// *= 2 or -=1
 
+// counting revisited
+for (var number = 0; number <= 12; number += 2)
+	console.log(number);
 
+// Switch statements
+switch (prompt('What is the weather like?')) {
+	case 'rainy':
+	  console.log('Remember to bring an umbrella');
+	  break;
+	case 'sunny':
+	  console.log('Dress lightly.');
+	case 'cloudy':
+	  console.log('Go outside.');
+	  break
+	default:
+	  console.log('Unknown weather type!');
+	  break;    
+}
 
+// you can put any number of labels inside a case you want.
 
-
+/* keypoints:
+- programs are built out of statements (and those statements can contain statements and so on)
+- statements tend to contain expressions, which can be built ouf of smaller expressions
+- put statements after one another to give your program a top-bottom execution style
+- variables are used to file pieces of data under a name, and are useful for tracking statement in a program
+- the enviornment is the set of variables that are currently defined (prompt, alert for a fresh window)
+- you can introduce disturbances in the flow by using conditional (if, else, switch) and looping (while, do, for)
+- functions are special values that encapsulate a piece of a program. You invoke them by writing functionName(argument1, argument2). Such a function call is an expression, and may produce a value
 
