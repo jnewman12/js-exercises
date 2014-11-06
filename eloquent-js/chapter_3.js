@@ -42,6 +42,64 @@ var f2 = function() {
 f2();
 console.log(x);
 
+// Nested Scope
+// In Javascript, functions are the only things that create a new scope. You can use free standing blocks
+var something = 1;
+{
+	var something2 = 2;
+	// do stuff
+}
+// outside block
+// normally this is only useful when doing if/else 
+
+// Functions as Values
+// Function variables usually act as names for a spefiic piece of the program. These are defined once and never changed. 
+// A function value can do all the things that other values can do;
+  // - use in arbitrary expressions, not just call it
+  // - it is possible to store a function value ina  new place, pass it as an argument to a function and so on..
+var launchMissles = function(value) {
+	missleSystem.launch('now');
+};
+if (safeMode)
+  launchMissles = function(value) {/* stuff */};
+
+
+// there are shorter ways to declare functions
+function square(x) {
+	return x * x;
+}
+// this is a function declaration. The statement defines the variable square and points it at the given function. 
+// BUT!!
+console.log('The future says:', future());
+function future() {
+	return "We STILL have no flying cars.";
+}
+// This works because function declarations are not part of the regular top-bottom flow control.
+
+
+// a 'program' that makes a few function calls
+function greet(who) {
+	console.log('Hello ' + who);
+}
+greet('Harry');
+console.log('Bye');
+// process;
+  // - the call to greet causes control to jum to the start of that function
+  // - it calls console.log, which then returns control to 'who'
+  // - then, it reaches the end of the greet function, so it returns to the place that called it
+// the place where the computer stores this context is the call stack
+// every time a function is called, the current context is put on top of the stack
+
+
+
+
+
+
+
+
+
+
+
 
 
 
