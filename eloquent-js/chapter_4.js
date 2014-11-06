@@ -36,6 +36,31 @@ console.log("right" in anObject);
 // Arrays, are just a kind of object specialized for storing sequences of things
 
 
+// Mutability
+//numbers, booleans, strings are all immutable (you cannot change and existing value of those types)
+// objects value can be modified by changing its properties
+// comparing different objects will return false, even if they are identical
+
+var journal = [];
+
+function addEntry(events, didITurnIntoASquirrel) {
+	journal.push({
+		events: events,
+		squirrel: didITurnIntoASquirrel
+	});
+}
+
+addEntry(['work', 'touched tree', 'pizza', 'running'], false);
+addEntry(["work", "ice cream", "cauliflower", "lasagna",
+          "touched tree", "brushed teeth"], false);
+addEntry(["weekend", "cycling", "break", "peanuts",
+          "beer"], true);
+
+
+// correlation is a measure of dependence between variables. 
+
+// Computing Correlation          
+
 
 
 
