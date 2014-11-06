@@ -204,3 +204,43 @@ printFarmInventory(7, 16, 3);
 
 
 // Exercises
+
+// 1. Minimum
+function min(arg1, arg2) {
+	   if (arg1 < arg2) {
+	    return arg1;
+	} else if (arg2 < arg1) {
+	    return arg2;
+	} else {
+	    console.log('Something broke :(');
+	}
+}
+min(0, -10);
+
+// 2. Recursion
+function isEven(number) { /* to return a boolean */
+   if (number % 2 === 0) {
+       return true;
+   } else if (number % 2 !== 0) {
+       return false;
+   } else {
+       return isEven(number - 2);
+   }
+}
+isEven(-1);
+
+// 3. Bean Counting
+function countChar(string, ch) {
+  var counted = 0;
+  for (var i = 0; i < string.length; i++)
+    if (string.charAt(i) == ch)
+      counted += 1;
+  return counted;
+}
+
+function countBs(string) {
+  return countChar(string, "B");
+}
+
+countBs('hi');
+countChar('this is sparta', 's');
