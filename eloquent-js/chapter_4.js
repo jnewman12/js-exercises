@@ -60,8 +60,23 @@ addEntry(["weekend", "cycling", "break", "peanuts",
 // correlation is a measure of dependence between variables. 
 
 // Computing Correlation          
+// loop over all journal entries and tally up how many times the event occurs in relation to squirrel transformations
+function hasEvent(event, entry) {
+	return entry.events.indexOf(event) != -1;
+}
 
+function tableFor(event, journal) {
+	var table = [0, 0, 0, 0];
+	for (var i = 0; i < journal.length; i++) {
+		var entry = journal[i], index = 0;
+		if (hasEvent(event, entry)) index += 1;
+		if (entry.squirrel) index += 2;
+		table[index] += 1;
+	}
+	return table;
+}
 
+console.log(tableFor('pizza', JOURNAL));
+// -> [76, 9, 4, 1]
 
-
-
+// Objects as Maps
