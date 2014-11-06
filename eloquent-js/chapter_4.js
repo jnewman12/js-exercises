@@ -169,6 +169,28 @@ console.log(window.myVar);
 // Exercises
 
 // 1. Sum of a range
+/*Next, write a sum function that takes an array of numbers and returns the sum of these numbers. Run the previous program and see whether it does indeed return 55.*/
+function sum(arr) {
+  var total = 0;
+  for (var i = 0; i < arr.length; i++)
+    total += arr[i];
+  return total;
+}
+
+/* I did not know how to do the range function, this is his example*/
+function range(start, end, step) {
+  if (step == null) step = 1;
+  var array = [];
+
+  if (step > 0) {
+    for (var i = start; i <= end; i += step)
+      array.push(i);
+  } else {
+    for (var i = start; i >= end; i += step)
+      array.push(i);
+  }
+  return array;
+}
 
 // 2. Reversing an Array
 
