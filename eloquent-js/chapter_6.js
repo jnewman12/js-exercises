@@ -43,9 +43,55 @@ killerRabbit.speak('SKREEEEEEK');
 
 
 // Constructors
+// a more convenient way to create objects that derive from the shared prototype is to use a contructor
+// In js, calling a function with the new keyword in front of it causes it to be treated as a constructor
+// the constructor will have the 'this' variable bound to a fresh object
 
+// An object created with new is said to be an instance of its contructor
 
+// here is a constructor for rabbits. It is a convention to capitalize the names of constructors so that they are easily distinguished from other functions
+function Rabbit(type) {
+	this.type = type;
+}
+var killerRabbit = new Rabbit("killer");
+var blackRabbit = new Rabbit('black');
+console.log(blackRabbit.type);
+//black
 
+// constructors automatically get a property named prototype, which by default holds a plain, empty object that derives from Object.prototype
+// So to add a speak method to rabbits created with the rabbit constructor, we can do this
+Rabbit.prototype.speak = function(line) {
+	console.log("The " + this.type + " rabbit says ' " + line + " ' ");
+};
+blackRabbit.speak("Doom...");
+
+Rabbit.prototype.teeth = 'small';
+console.log(killerRabbit.teeth);
+// small
+killerRabbit.teeth = "long, sharp, bloody";
+console.log(killerRabbit.teeth);
+// long, sharp, bloody
+console.log(blackRabbit.teeth);
+//small
+console.log(Rabbit.prototype.teeth);
+// small
+
+// calling toString on an array gives a result similar to calling .join(",")
+// it puts commas between the values in an array
+
+// a prototype can be used at any time to add new properties and methods to all objects based on it
+Rabbit.prototype.dance = function() {
+	console.log("The " + this.type + " rabbit dances a jig.");
+};
+killerRabbit.dance();
+
+// all properties that we create by assigning them are enumerable
+
+for (var name in map) {
+	if (map.hasOwnProperty(name)){
+		// some code
+	}
+}
 
 
 
