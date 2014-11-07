@@ -161,8 +161,27 @@ console.log(ancestry.filter(function(person) {
 // Exercises
 
 // 1. Flattening
+var flat = [[0, 1], [2, 3], [4,5]].reduce(function(x, y) {
+    return x.concat(y);
+});
 
 // 2. Mother - Child Age Difference
+function average(array) {
+	function plus(a, b) { return a + b;}
+	return array.reduce(plus) / array.length;
+}
+
+var byName = {};
+ancestry.forEach(function(person) {
+	byName[person.name] = person;
+});
+
+var differences = ancestry.filter(function(person) {
+	return byName[person.mother] !== null;
+}).map(function(person) {
+	return person.born - byName[person.mother].born;
+});
+console.log(average(differences));
 
 // 3. Historical Life Expectancy
 
