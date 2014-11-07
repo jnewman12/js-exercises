@@ -76,6 +76,97 @@ console.log(map(overNinety, function(person) {
   return person.name;
 }));
 
+// finding the person with the earliest year of birth without higher order functions
+var min = ancestry[0];
+for (var i = 1; i < ancestry.length; i++) {
+	var cur = ancestry[i];
+	if (cur.born < min.born)
+		min = cur;
+}
+console.log(min);
+
+// higher order functions shine when you need to compose functions
+
+// find average age for men and women in the data set
+function average(array) {
+	function plus(a, b) { return a + b;}
+	return array.reduce(plus) / array.length;
+}
+function age (p) { return p.died - p.born; }
+function male(p) { return p.sex == "m"; }
+function female(p) { return p.sex == "f"; }
+console.log(average(ancestry.filter(male).map(age)));
+
+var byName = {};
+ancestry.forEach(function(person) {
+	byName[person.name] = person;
+});
+console.log(byName['weird name']);
+
+
+function reduceAncestors(person, f, defaultValue) {
+  function valueFor(person) {
+    if (person == null)
+      return defaultValue;
+    else
+      return f(person, valueFor(byName[person.mother]),
+                       valueFor(byName[person.father]));
+  }
+  return valueFor(person);
+}
+// condenses a value from the family tree
+
+// this code would find the percentage of know ancestors for a given person who lived past 70
+function countAncestors(person, test) {
+  function combine(person, fromMother, fromFather) {
+    var thisOneCounts = test(person);
+    return fromMother + fromFather + (thisOneCounts ? 1 : 0);
+  }
+  return reduceAncestors(person, combine, 0);
+}
+function longLivingPercentage(person) {
+  var all = countAncestors(person, function(person) {
+    return true;
+  });
+  var longLiving = countAncestors(person, function(person) {
+    return (person.died - person.born) >= 70;
+  });
+  return longLiving / all;
+}
+
+
+// Binding
+// the bind method, which all functions have, creates a new function that will call the original function but with some of the arguments already fixed
+// this shows bind in use
+
+var theSet = ["Carel Haverbeke", "Maria van Brussel",
+              "Donald Duck"];
+function isInSet(set, person) {
+  return set.indexOf(person.name) > -1;
+}
+
+console.log(ancestry.filter(function(person) {
+  return isInSet(theSet, person);
+}));
+
+// arrays provide a number of useful higher order function
+// forEach to do something with each element in an array
+// filter to build a new array with some elements filtered out
+// map to build a new array where each element has been put through a function 
+// and reduce to combine al an arrays elemenmts to a single value
+
+// functions have an apply method that can be used to call them with an array specifying their arguments
+// they also have a bind method which is used to create a partially applied version of the function
+
+// Exercises
+
+// 1. Flattening
+
+// 2. Mother - Child Age Difference
+
+// 3. Historical Life Expectancy
+
+// 4. Every and Then Some
 
 
 
