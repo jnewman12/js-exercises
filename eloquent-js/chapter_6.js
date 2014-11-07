@@ -93,10 +93,110 @@ for (var name in map) {
 	}
 }
 
+// making a row of data
+// the first part computes arrays of minimum column widths and row heights for a grid of cells
+// the rows variable will hold an array of arrays with each inner array representing a row of cells
+
+function rowHeights(rows) {
+	return rows.map(function(row) {
+		return row.reduce(function(max, cell) {
+			return Math.max(max, cell.minHeight());
+		}, 0);
+	});
+}
+
+function colWidths(rows) {
+	return rows[0].map(function(_, i) {
+		return rows.reduce(function(max, row) {
+			return Math.max(max, row[i].minWidth());
+		}, 0);
+	});
+}
+
+// using a variable name starting with an underscore is a way to indicate that this argument is not going to be used
+
+// this is how to draw that table
+function drawTable(rows) {
+  var heights = rowHeights(rows);
+  var widths = colWidths(rows);
+
+  function drawLine(blocks, lineNo) {
+    return blocks.map(function(block) {
+      return block[lineNo];
+    }).join(" ");
+  }
+
+  function drawRow(row, rowNum) {
+    var blocks = row.map(function(cell, colNum) {
+      return cell.draw(widths[colNum], heights[rowNum]);
+    });
+    return blocks[0].map(function(_, lineNo) {
+      return drawLine(blocks, lineNo);
+    }).join("\n");
+  }
+
+  return rows.map(drawRow).join("\n");
+}
+// the drawTable function uses the helper drawRow to draw all rows
+// and then joins them together with newline characters
+// the drawRow function itself first converts the cell objects in the row to blocks, which are arrays of strings representing the content of the cells, split by line.
+// the second call to map in drawRow build up this output line by line by mapping over the lines in the leftmpst block and for each of those, collecting a line that spansa the full width of the table. These lines are then joined with newline characters to provide the whole row as drawRows return value
+// the function drawLine extracts lines that should appear next to each other from an array of blocks and joins them with a space character to create a one character gap between the tables columns
 
 
+//now, a constructor for the cells that contain text
+function repeat(string, times) {
+	var result = "";
+	for (var i = 0; i < times; i++)
+		result += string;
+	return result;
+}
+function TextCell(text) {
+	this.text = text.split("\n");
+};
+TextCell.prototype.minHeight = function {
+	return this.text.length;
+};
+TextCell.prototype.draw = function(width, heigth) {
+	var result = [];
+	for (var i = 0; i < height; i++) {
+		var line = this.text[i] || "";
+		result.push(line + repeat(" ", width - line.length));
+	}
+	return result;
+};
+// this code uses a helper, repeat, which build a string whose value is the string argument repeated times number of times
+// the draw method uses it to add padding to lines os that they all have the required length
+// Let's try everything by writing a 5 x 5 checkerboard
+var rows = [];
+for (var i = 0; i < 5; i++) {
+	var row = [];
+	for (var j = 0; j < 54; j++) {
+		if ((j + i) % 2 == 0)
+			row.push(new TextCell("##"));
+		else
+			row.push(new TextCell("  "));
+	}
+	rows.push(row);
+}
+console.log(drawTable(rows));
 
 
+// Objects are complicated :(
+// they have prototypes, which are other objects, and will acts as if they have properties they dont have as long as the prototype has that property. Simple objects have Object.prototype as their prototype
+// Constructors which are functions whose name start with a capital letter, can be used with the new operator to create new objects.
+// the new objects prototype will be the object found in the prototype property of the constructor function. You can make good of this by putting the properties that all values of a given type share into their prototype. The instanceOf operator can tell you whether that object is an instance of that constructor
 
+// one useful thing to do with objects is to specify an interface for them and tell everybody they are supposed to talk to your object through that interface. The rest of the details that make up your object are now encapsulated 
 
+// having different objects expose the same interface and then writing code that works on any object with the interface is called polymorphism
 
+// when implementing multiple types that differ in only some details, it can be helpful to simple make the prototype of your new type derive from the prototype of your old type and have your new constructor call the old one. This gives you an object type similar to the old type by for which you can add and override properties.
+
+// Exercises
+
+// 1. 
+
+// 2. 
+
+// 3. 
