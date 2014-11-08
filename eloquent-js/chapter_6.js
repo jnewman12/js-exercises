@@ -195,8 +195,126 @@ console.log(drawTable(rows));
 
 // Exercises
 
-// 1. 
+// 1. Vector
+function Vector(x, y) {
+	this.x = x;
+	this.y = y;
+}
+Vector.prototype.plus = function(other) {
+	return new Vector(this.x + other.x, this.y + other.y);
+};
+Vector.prototype.minus = function(other) {
+	return new Vector(this.x - other.x, this.y - other.y);
+};
+Object.defineProperty(Vector.prototype, "length", {
+	get: function() {
+		return Math.sqrt(this.x * this.x + this.y * this.y);
+	}
+});
+console.log(new Vector(1, 2).plus(new Vector(2, 3)));
 
-// 2. 
+// 2. Cells
+function StretchCell(inner, width, height) {
+	this.inner = inner;
+	this.width = width;
+	this.height = height;
+}
 
-// 3. 
+StretchCell.prototype.minWidth = function() {
+	return Math.max(this.width, this.inner.minWidth());
+};
+StretchCell.prototype.minHeight = function() {
+	return Math.mx(this.height, this.inner.minHeight());
+};
+StretchCell.prototype.draw = function(width, height) {
+	return this.inner.draw(width, height);
+};
+var sc = new StretchCell(new TextCell('abc'), 1, 2);
+console.log(sc.minWidth());
+console.log(sc.minHeight());
+
+// 3.  This is not my code
+
+function logFive(sequence) {
+  for (var i = 0; i < 5; i++) {
+    if (!sequence.next())
+      break;
+    console.log(sequence.current());
+  }
+}
+
+function ArraySeq(array) {
+  this.pos = -1;
+  this.array = array;
+}
+ArraySeq.prototype.next = function() {
+  if (this.pos >= this.array.length - 1)
+    return false;
+  this.pos++;
+  return true;
+};
+ArraySeq.prototype.current = function() {
+  return this.array[this.pos];
+};
+
+function RangeSeq(from, to) {
+  this.pos = from - 1;
+  this.to = to;
+}
+RangeSeq.prototype.next = function() {
+  if (this.pos >= this.to)
+    return false;
+  this.pos++;
+  return true;
+};
+RangeSeq.prototype.current = function() {
+  return this.pos;
+};
+
+logFive(new ArraySeq([1, 2]));
+// → 1
+// → 2
+logFive(new RangeSeq(100, 1000));
+
+
+function logFive2(sequence) {
+  for (var i = 0; i < 5 && sequence != null; i++) {
+    console.log(sequence.head());
+    sequence = sequence.rest();
+  }
+}
+
+function ArraySeq2(array, offset) {
+  this.array = array;
+  this.offset = offset;
+}
+ArraySeq2.prototype.rest = function() {
+  return ArraySeq2.make(this.array, this.offset + 1);
+};
+ArraySeq2.prototype.head = function() {
+  return this.array[this.offset];
+};
+ArraySeq2.make = function(array, offset) {
+  if (offset == null) offset = 0;
+  if (offset >= array.length)
+    return null;
+  else
+    return new ArraySeq2(array, offset);
+};
+
+function RangeSeq2(from, to) {
+  this.from = from;
+  this.to = to;
+}
+RangeSeq2.prototype.rest = function() {
+  return RangeSeq2.make(this.from + 1, this.to);
+};
+RangeSeq2.prototype.head = function() {
+  return this.from;
+};
+RangeSeq2.make = function(from, to) {
+  if (from > to)
+    return null;
+  else
+    return new RangeSeq2(from, to);
+};
