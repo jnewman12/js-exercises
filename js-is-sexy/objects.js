@@ -172,3 +172,28 @@ mangoFruit.nativeTo();
 // This is a generic Fruit
 // Grown in USA
 
+
+// access properties with dot or bracket notation
+var book = { title: 'Ways to go', pages: 280, bookMark1: "Page 20"};
+// Dot Notation
+console.log(book.title); // Ways to go
+console.log(book.pages);// 280
+//Bracket Notation
+console.log(book['title']); // Ways to go
+console.log(book['pages']); // 280
+
+// Inherited and Own Properties
+// Own properties are defined on the object, inherited properties were inherited from objects Prototype Object
+
+//to find out if a property exists on an object (either as inhrited or an own), use the 'in' operator
+// create new school w/ a property name schoolName
+var school = {schoolName: 'MIT'};
+//prints true because schoolName is an own property on the School Object
+console.log('schoolName' in school); // true
+// prints false because we did not define a schoolType property on the school object, and it did not inherit schoolType through Object.prototype
+console.log('schoolType' in school); // false
+//prints true because the school object inherited toString method from Object.prototype
+console.log('toString' in school); // true
+
+
+
