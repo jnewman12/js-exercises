@@ -61,6 +61,7 @@ function ourRange(start, finish) {
 
 ourRange(1, 10);
 
+
 // with eval (which apparently shouldnt really be used)
 function sum(numbers) {
     return eval(numbers.join('+'));
@@ -76,6 +77,7 @@ function sum(numbers) {
     return total;
 }
 sum([2, 3, 4])
+```
 
 
 `Reversing an Array`
@@ -89,9 +91,9 @@ function reverseArray(array) {
     return otherArray;
 }
 reverseArray([1, 2, 3])
+```
 
-
-
+```javascript
 function reverseArrayInPlace(array) {
   var temp;
   var i = array.length - 1;
