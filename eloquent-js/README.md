@@ -109,3 +109,53 @@ function reverseArrayInPlace(array) {
 }
 reverseArrayInPlace([1, 2, 3]);
 ```
+
+
+`minimum`
+
+```javascript
+function minimum(num1, num2) {
+    if (num1 < num2) {
+        return num1;
+    } else if (num1 > num2) {
+        return num2;
+    } else {
+        return "numbers are equal";
+    }
+}
+minimum(2, 3)
+```
+
+`recursion`
+
+```javascript
+function isEven(number) {
+    if (number % 2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+}
+
+isEven(7)
+```
+
+`bean counting`
+
+```javascript
+function countChar(string, word) {
+    var count = 0; 
+    for (var i = 0; i < string.length; i++) {
+      if (string.charAt(i) === word) {
+          count += 1;
+      }
+    }
+    return count;
+}
+countChar("bananas", "a")
+
+function countBs(string) {
+    return countChar(string, "b");
+}
+countBs("banana");
+```
