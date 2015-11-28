@@ -158,3 +158,23 @@ function reverseArrayInPlace(array) {
 }
 reverseArrayInPlace([1, 2, 3]);
 ```
+
+# chapter 5
+`flattening`
+
+```javascript
+function flatten(arr) {
+    return arr.reduce(function(prev, current) {
+        return prev.concat(Array.isArray(current) ? flatten(current) : current);
+    }, []);
+}
+
+flatten([[0, 1], [2, 3], [4, 5]]);
+```
+
+`mother child age difference`
+
+```javascript
+// data set - http://eloquentjavascript.net/code/ancestry.js
+
+```
