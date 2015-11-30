@@ -176,5 +176,7 @@ flatten([[0, 1], [2, 3], [4, 5]]);
 
 ```javascript
 // data set - http://eloquentjavascript.net/code/ancestry.js
-
+function setData(obj) {
+    return obj;
+}
 ```
